@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="text-align: center; margin-bottom: 20px;">
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="TalenTrade Logo" style="height: 70px; vertical-align: middle; margin-right: 10px;">
+    <span style="font-size: 36px; font-weight: bold; color: #e91e63; vertical-align: middle;">TalenTrade</span>
+</div>
+<h1 style="text-align:center;">
+    <h1 style="text-align:center;">🌟 What is TalenTrade?</h1>
+<p style="text-align:center;">
+    TalenTrade is a student-friendly platform where you can learn new skills by exchanging your own!<br>
+    Whether you're a coding wizard or an art enthusiast, there’s always someone who wants to learn from you.
+</p>
+
+<hr>
+
+<h2 style="text-align:center;">💬 Inspiring Words</h2>
+<div style="text-align:center; margin-bottom: 30px;">
+    <blockquote>"Everyone you will ever meet knows something you don’t." <br>— <i>Bill Nye</i></blockquote>
+    <blockquote>"Teaching others is the best way to learn faster." <br>— <i>Richard Feynman</i></blockquote>
+    <blockquote>"Your talent is God’s gift to you. What you do with it is your gift back to God." <br>— <i>Leo Buscaglia</i></blockquote>
+</div>
+
+<hr>
+
+<h2 style="text-align:center;">🎓 Popular Skills on TalenTrade</h2>
+<div class="skill-buttons">
+    <button>🧠 Graphic Design</button>
+    <button>🐍 Python Coding</button>
+    <button>🗣️ Public Speaking</button>
+    <button>🎤 Singing</button>
+    <button>📸 Photography</button>
+    <button>📊 Excel & Analytics</button>
+    <button>🎭 Acting & Theatre</button>
+    <button>📝 Creative Writing</button>
+</div>
+
+<p style="text-align:center; margin-top: 20px;">
+    <a href="/signup">🚀 Start Sharing Your Talent — Create an Account</a>
+</p>
+{% endblock %}

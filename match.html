@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 style="text-align:center;">🤝 Skill Match Suggestions</h2>
+
+{% if match_results %}
+<div style="max-width: 800px; margin: auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+
+    <!-- 🧠 Teachers Section -->
+    <h3 style="color: green;">🎯 Skills You Want — Who Has Them & What They Recommend</h3>
+    {% if match_results.teachers %}
+        <ul>
+        {% for match in match_results.teachers %}
+            {% for skill in match.shared_skills %}
+                <li style="margin-bottom: 20px;">
+                    ✅ You want to learn: <strong>{{ skill }}</strong><br>
+                    👤 <strong>{{ match.user.username }}</strong> has this skill.<br>
+                    📚 <strong>{{ match.user.username }} recommends:</strong><br>
+
+                    {% set s = skill.lower() %}
+                    {% if 'graphic design' in s %}
+                        🔗 <a href="https://www.youtube.com/watch?v=O6dgt5QXZ5c" target="_blank">Graphic Design Full Course (YouTube)</a><br>
+                        🔗 <a href="https://www.udemy.com/course/graphic-design-masterclass-everything-you-need-to-know/" target="_blank">Udemy: Graphic Design Masterclass</a><br>
+
+                    {% elif 'python' in s %}
+                        🔗 <a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc" target="_blank">Python Full Course (YouTube)</a><br>
+                        🔗 <a href="https://www.udemy.com/course/complete-python-bootcamp/" target="_blank">Udemy: Python Bootcamp</a><br>
+
+                    {% elif 'public speaking' in s %}
+                        🔗 <a href="https://www.youtube.com/watch?v=tShavGuo0_E" target="_blank">Public Speaking Secrets (YouTube)</a><br>
+                        🔗 <a href="https://www.coursera.org/learn/public-speaking" target="_blank">Coursera: Public Speaking</a><br>
+
+                    {% elif 'singing' in s %}
+                        🔗 <a href="https://www.youtube.com/watch?v=0-Qbdj1wWzQ" target="_blank">Singing Basics (YouTube)</a><br>
+                        🔗 <a href="https://www.udemy.com/course/sing-better-improve-your-voice/" target="_blank">Udemy: Improve Your Singing</a><br>
+
+                    {% elif 'photography' in s %}
+                        🔗 <a href="https://www.youtube.com/watch?v=7ZVyNjKSr0M" target="_blank">Photography for Beginners (YouTube)</a><br>
+                        🔗 <a href="https://www.udemy.com/course/photography-masterclass-complete-guide-to-photography/" target="_blank">Udemy: Photography Masterclass</a><br>
+
+                    {% elif 'excel' in s or 'analytics' in s %}
+                        🔗 <a href="https://www.youtube.com/watch?v=PbQwrpW6D20" target="_blank">Excel & Data Analytics (YouTube)</a><br>
+                        🔗 <a href="https://www.udemy.com/course/microsoft-excel-advanced-excel-formulas-and-functions/" target="_blank">Udemy: Excel Advanced</a><br>
+
+                    {% elif 'acting' in s or 'theatre' in s %}
+                        🔗 <a href="https://www.youtube.com/watch?v=tnJxqRLg9dI" target="_blank">Acting Techniques (YouTube)</a><br>
+                        🔗 <a href="https://www.udemy.com/course/introduction-to-acting/" target="_blank">Udemy: Acting Course</a><br>
+
+                    {% elif 'creative writing' in s %}
+                        🔗 <a href="https://www.youtube.com/watch?v=V4nU-toI15s" target="_blank">Creative Writing Tips (YouTube)</a><br>
+                        🔗 <a href="https://www.coursera.org/learn/creative-writing" target="_blank">Coursera: Creative Writing Specialization</a><br>
+
+                    {% elif 'c++' in s %}
+                        🔗 <a href="https://www.youtube.com/watch?v=vLnPwxZdW4Y" target="_blank">C++ Full Course (YouTube)</a><br>
+                        🔗 <a href="https://www.udemy.com/course/beginning-c-plus-plus-programming/" target="_blank">Udemy: C++ Programming</a><br>
+
+                    {% elif 'java' in s %}
+                        🔗 <a href="https://www.youtube.com/watch?v=BGTx91t8q50" target="_blank">Java Full Course (YouTube)</a><br>
+                        🔗 <a href="https://www.udemy.com/course/java-the-complete-java-developer-course/" target="_blank">Udemy: Complete Java Course</a><br>
+
+                    {% elif 'c' in s %}
+                        🔗 <a href="https://www.youtube.com/watch?v=KJgsSFOSQv0" target="_blank">C Programming Course (YouTube)</a><br>
+                        🔗 <a href="https://www.udemy.com/course/c-programming-for-beginners/" target="_blank">Udemy: C Programming for Beginners</a><br>
+
+                    {% else %}
+                        🔗 <a href="https://www.youtube.com/results?search_query={{ skill | urlencode }}+tutorial" target="_blank">YouTube</a><br>
+                        🔗 <a href="https://www.udemy.com/courses/search/?q={{ skill | urlencode }}" target="_blank">Udemy</a><br>
+                        🔗 <a href="https://www.coursera.org/search?query={{ skill | urlencode }}" target="_blank">Coursera</a><br>
+                    {% endif %}
+                </li>
+                <hr>
+            {% endfor %}
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No one can teach you your desired skills yet. 😕</p>
+    {% endif %}
+
+    <!-- 👩‍🎓 Learners Section -->
+    <h3 style="color: #007bff;">📢 People Who Want to Learn What You Can Teach</h3>
+    {% if match_results.learners %}
+        <ul>
+        {% for match in match_results.learners %}
+            {% for skill in match.shared_skills %}
+                <li style="margin-bottom: 20px;">
+                    👤 <strong>{{ match.user.username }}</strong> wants to learn: <strong>{{ skill }}</strong><br>
+                    ✅ You can teach them!<br>
+                    📚 Recommend a link:
+                    <a href="https://www.youtube.com/results?search_query={{ skill | urlencode }}+tutorial" target="_blank">YouTube</a>,
+                    <a href="https://www.udemy.com/courses/search/?q={{ skill | urlencode }}" target="_blank">Udemy</a>,
+                    <a href="https://www.coursera.org/search?query={{ skill | urlencode }}" target="_blank">Coursera</a>
+                </li>
+                <hr>
+            {% endfor %}
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No learners match your skills yet. 👀</p>
+    {% endif %}
+
+</div>
+{% else %}
+    <p style="text-align:center;">Please register your skills first to see matches.</p>
+{% endif %}
+{% endblock %}

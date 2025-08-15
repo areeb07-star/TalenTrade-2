@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TalenTrade</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">🏠 Home</a>
+        <a href="/login">🔐 Login</a>
+        <a href="/signup">📝 Sign Up</a>
+        <a href="/profile">🙍 Profile</a>
+        <a href="/register-skill">💡 Register Skill</a>
+        <a href="/match">✨Match Skill</a>
+        <a href="/help">❓ Help</a>
+    </div>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

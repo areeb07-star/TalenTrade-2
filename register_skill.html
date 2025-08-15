@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 style="text-align:center;">🎯 Register Your Skills</h2>
+<form method="POST" style="max-width:600px; margin:auto; background:white; padding:20px; border-radius:12px;">
+    <h3>🧠 Skills You Can Share</h3>
+    {% for skill in skills %}
+        <label><input type="checkbox" name="skill_have" value="{{ skill }}"> {{ skill }}</label><br>
+    {% endfor %}
+
+    <br>
+    <h3>📚 Skills You Want to Learn</h3>
+    {% for skill in skills %}
+        <label><input type="checkbox" name="skill_want" value="{{ skill }}"> {{ skill }}</label><br>
+    {% endfor %}
+
+    <br>
+    <button type="submit" style="padding:10px 20px; background:#ff69b4; color:white; border:none; border-radius:8px;">Submit</button>
+</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 style="text-align:center;">🙍 Your Profile</h2>
+<div class="profile-box">
+    {% if user %}
+        <p><strong>Username:</strong> {{ user.username or "Fokaiha Areeb" }}</p>
+        <p><strong>Email:</strong> {{ user.email or "fokaiha@gmail.com" }}</p>
+        <p><strong>Skills Shared:</strong> {{ user.have | join(', ') }}</p>
+        <p><strong>Skills Interested In:</strong> {{ user.want | join(', ') }}</p>
+        <a href="{{ url_for('register_skill') }}">
+    <button style="padding:10px 20px; background:#ff69b4; color:white; border:none; border-radius:8px;">Edit Profile ✏️</button>
+</a>
+    {% else %}
+        <p>No profile loaded.</p>
+    {% endif %}
+</div>
+{% endblock %}
